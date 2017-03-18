@@ -26,38 +26,26 @@ class App extends Component {
     const classes = BEMHelper('root');
 
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div {...classes()}>        
-          <AppBar
-            title="Title"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-          />
+    <div >
 
-
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
+    <nav id="mainNav" className="navbar navbar-default navbar-fixed-top">
+        <div className="container-fluid">
         {/*<!-- Brand and toggle get grouped for better mobile display -->*/}
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">OHDSI</a>
+                <a className="navbar-brand page-scroll" href="#page-top">OHDSI</a>
             </div>
 
             {/*<!-- Collect the nav links, forms, and other content for toggling -->*/}
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">OVERVIEW</a>
+                        <a className="page-scroll" href="#guideline">TARGETED USES CASES</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#services">TARGET USE CASES</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">METHODS PORTFOLIO</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                   <li>
+                        <a className="page-scroll" href="#portfolio">METHODS PORTFOLIO</a>
                     </li>
                 </ul>
             </div>
@@ -65,36 +53,203 @@ class App extends Component {
         </div>
         {/*<!-- /.container-fluid -->*/}
     </nav>
-    <header>
-        <div class="header-content">
-            <div class="header-content-inner">
+
+    <header style={{height:'600px'}}>
+        <div className="header-content">
+            <div className="header-content-inner">
                 <h1 id="homeHeading">OHDSI Evidence Explorer</h1>
                 <hr/>
-                <p>Lora ipsum..</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">I RECOMMEND CLINICAL GUIDELINES.</a>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">I WORK IN A CLINICAL RESEARCHER.</a>
-
+                <p>The OHDSI Evidence Explorer is designed to help you find relevant, high-quality information to support your analytical needs. To begin, tell us more about you.</p>
+                <a href="#guideline" className="btn btn-primary btn-xl page-scroll">I RECOMMEND CLINICAL GUIDELINES.</a>
+                <a href="#researcher" className="btn btn-primary btn-xl page-scroll">I WORK IN A CLINICAL RESEARCH.</a>
             </div>
         </div>
     </header>
-    <section class="bg-primary" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">TARGETED USE CASES</h2>
-                    <hr class="light"/>
-                    <p class="text-faded">Research/Regulatory</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+
+    <section className="bg-primary" id="guideline">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 className="section-heading">As I develop guidelines, I want to...</h2>
+                   <div className="col-lg-3 col-rt-6 text-center">
+                    <div className="service-box">
+                       <h3>Use Case #1: Drug Exploration</h3>
+                        <p className="text-muted">I want to evaluate a drug profile with:<br/>
+- 2 years on the market<br/>
+- Initial reports of comparable or better outcomes than older drugs<br/>
+- Recommend as alternative or additional line of treatment</p>
+                    </div>
+                </div>
+                <div className="col-lg-3 col-rt-6 text-center">
+                    <div className="service-box">
+                        <h3>Use Case #2: Drug Recall/Warning</h3>
+                        <p className="text-muted">I want to evaluate a drug profile with:<br/>
+- 2 years on the market<br/>
+- Initial reports of excessive side affects<br/>
+- Recommend drug recall or additional consideration to guidelines<br/>
+</p>
+                    </div>
                 </div>
             </div>
+            <a href="#portfolio" className="btn btn-primary btn-xl page-scroll">NEXT &gt;&gt; </a>
+        </div>
         </div>
     </section>
 
-
-
-          {this.props.children}
+    <section id="researcher">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-12 text-center">
+                    <h2 className="section-heading">As I work in clinical research, I want to...</h2>
+                    <hr className="primary"/>
+                </div>
+            </div>
         </div>
-      </MuiThemeProvider>
+        <div className="container">
+                <div className="col-lg-3 col-md-6 text-center">
+                    <div className="service-box">
+                        <h3>Use Case #3: Consideration of a Drug for a Study</h3>
+                        <p className="text-muted">Evaluating a new drug with:<br/>
+- 2 years on the market in an adult population<br/>
+- Initial reports of comparable or better outcomes than older drugs and reduced side affects<br/>
+- Consider for a randomized trial in pediatric population</p>
+
+                        <a href="#portfolio" className="btn btn-primary btn-xl page-scroll">NEXT &gt;&gt; </a>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+<section id="portfolio">
+	<div className="container">
+		<div className="row">
+			<div className="col-lg-8 col-lg-offset-2 text-center">
+        <h2 className="section-heading">Methods Portfolio Overview</h2>
+      </div>
+      <hr className="primary"/>
+    </div>
+  </div>
+	<div style={{clear:'both'}}>
+		<label style={{float:'left'}}>Category:  </label>
+		<select>
+		  <option value="Diabetes">Psychiatric</option>
+		  <option value="Depression">Depression</option>
+		  <option value="Metabolic">Metabolic</option>
+		  <option value="Neurological">Neurological</option>
+		  <option value="Cardiovascular">Cardiovascular</option>
+		  <option value="Oncology">Oncology</option>
+		</select>
+	</div>
+	
+	<div style={{clear:'both'}}>
+		<label style={{float:'left'}}>Phenotype:  </label>
+		<select>
+		  <option value="Diabetes">Diabetes</option>
+		  <option value="Depression">Depression</option>
+		  <option value="Bi-Polar">Bi-Polar</option>
+		  <option value="Schizophrenia">Schizophrenia</option>
+		</select>
+	</div>
+	
+	<h3>Summary</h3>
+       <a href="#expectations" className="btn btn-primary btn-xl page-scroll">NEXT &gt;&gt; </a>
+
+</section>
+<section id="expectations">
+	<div className="container">
+		<div className="row">
+			<div className="col-lg-8 col-lg-offset-2 text-center">
+    </div>
+		<h2>Expectations</h2>
+		<h3>Source Data</h3>
+			Source:  Truven Commercial Claims and Encounters<br/>
+			Type:  Claims<br/>
+			Number of Patients: <br/>
+			Demographics: <br/>
+			Time Span: <br/>
+			Terminologies: <br/>
+	</div>
+	
+	<div>
+		<h3>Data Model</h3>
+			Name:  OMOP CDM<br/>
+			Version:  <br/>
+			Link:  <br/>
+	</div>
+	
+	<div>
+		<h3>ETL</h3>
+			Platform:  <br/>
+			Source Code:  <br/> 
+	</div>
+	
+	<div>
+		<h3>Analytical Methods</h3>
+				Name:  <br/>
+				Study Design:  <br/>
+						Controls:  <br/>
+						Inclusion/ Exclusion:  <br/>
+						Confidence Interval Calibrations:  <br/>
+				Implementation:  <br/>
+				Literature References:  <br/>
+	</div>
+	
+	<div id="author" style={{clear:'both',minHeight:'400px'}}>
+		<h3>Author</h3>
+		<div style={{float:'left',width:'10%'}}>
+			<img src="img\schuemie.jpg" height="200px"/>
+		</div>
+		<div style={{float:'left',width:'87%',paddingLeft:'3%'}}>
+			<h4>Martijn Schuemie, PhD</h4>
+			<h5>Director, Epidemiology Analytics</h5>
+			<h5>Janssen Research and Development</h5>
+			<p>Dr. Martijn Schuemie received his Master's degree in Economics with a major in Information Management. He completed his PhD in Computer Science on the topic of human-computer interaction in virtual reality systems for phobia treatment. In the past, he was employed as an assistant professor at the Erasmus University Medical Center of Rotterdam, where he started by researching the application of text-mining the scientific literature in support of molecular biology. He later moved to pharmacoepidemiology, and was one of the lead investigators in the EU-ADR project tasked with building a prototype drug safety signal detection system using population-level observational data. In 2012 he received a one-year fellowship of the FDA and became an active OMOP investigator.</p>
+
+			<p>In 2013 Martijn joined Janssen Research and Development, where he continued his research in OMOP and later in OHDSI. He is working on methods for estimating average effect sizes in observational, calibration of effect size estimates, and patient level prediction, as well as supporting the conversion of databases to the OMOP CDM. Within OHDSI, Martijn has developed the White Rabbit and Rabbit in a Hat tools, and is contributing to the OHDSI Methods Library. Martijn is heading the OHDSI Population-Level Methods workgroup together with Marc Suchard.
+			</p>
+		</div>
+	</div>
+  <a href="http://ec2-54-70-205-229.us-west-2.compute.amazonaws.com:3485/?outcome=Insomnia" className="btn btn-primary btn-xl page-scroll" target="_blank">NEXT &gt;&gt; </a>
+  </div>
+</section>
+<section className="bg-primary" id="feedback">
+	<div className="container">
+	<div className="row">
+	
+	<h2>Related Research</h2>
+	<p>For more information about this phenotype checkout the content below.</p>
+	
+	<ul>
+		<li>Additional Reserach Link 1</li>
+		<li>Additional Reserach Link 2</li>
+		<li>Additional Reserach Link 3</li>
+	</ul>
+	
+	<hr/>
+	
+	<h2>Questions or Comments?</h2>
+	<p>Contact the author of this study by completing the form below.</p>
+
+	<form action="mailto:someone@example.com" method="post" encType="text/plain">
+	First Name:<br/>
+	<input type="text" name="name"/><br/>
+
+	Last Name:<br/>
+	<input type="text" name="name"/><br/>
+
+	E-mail:<br/>
+	<input type="text" name="mail"/><br/>
+
+	Comment:<br/>
+	<input type="text" name="comment" size="50"/><br/><br/>
+	<input type="submit" value="Send"/>
+	<input type="reset" value="Reset"/>
+	</form>
+</div>
+</div>
+</section>
+
+    </div>
     );
   }
 }
@@ -116,129 +271,4 @@ export default connect(
 )(App);
 
 /*
-    <section class="no-padding" id="portfolio">
-        <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt=""/>
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/2.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt=""/>
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/3.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt=""/>
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/4.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt=""/>
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/5.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt=""/>
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/6.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt=""/>
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
-            </div>
-        </div>
-    </aside>
-
-    <section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Let's Get In Touch!</h2>
-                    <hr class="primary"/>
-                    <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x sr-contact"></i>
-                    <p>123-456-6789</p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
     */

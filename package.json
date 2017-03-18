@@ -35,6 +35,7 @@
     "feathers-reduxify-services": "^0.3.0",
     "jquery-param": "^0.2.0",
     "lodash": "^4.17.4",
+    "magnific-popup": "^1.1.0",
     "material-ui": "^0.17.1",
     "node-sass": "^4.5.0",
     "numeral": "^2.0.4",
