@@ -1,0 +1,1 @@
+d <- readRDS(file.path("data", "fullset.rds"))
