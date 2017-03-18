@@ -10,22 +10,42 @@ library(shiny)
 shinyUI(fluidPage(
 
   titlePanel("OHDSI Evidence Pro"),
-
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("se",
-                  "Standard error cutoff:",
-                  min = 0,
-                  max = ceiling(max(d$seLogRr, na.rm = TRUE)),
-                  value = 0,
-                  step = 0.01),
-      selectInput("db", "Database:", dbs),
-      selectInput("outcomeName", "Outcome:", outcomes),
-      checkboxGroupInput("treatments", "Treatments:", treatments, selected = treatments)
-    ),
-
-    mainPanel(
-      plotOutput("distPlot", height = "625px", width = "100%")
+  tabsetPanel(
+    tabPanel("Matrix", 
+             sidebarLayout(
+               sidebarPanel(
+                 sliderInput("se",
+                             "Standard error cutoff:",
+                             min = 0,
+                             max = ceiling(max(d$seLogRr, na.rm = TRUE)),
+                             value = 0,
+                             step = 0.01),
+                 selectInput("db", "Database:", dbs),
+                 selectInput("outcomeName", "Outcome:", outcomes),
+                 checkboxGroupInput("treatments", "Treatments:", treatments, selected = treatments)
+               ),
+               
+               mainPanel(
+                 plotOutput("distPlot", height = "625px", width = "100%"))
+               )
+             ),
+    tabPanel("Forest", 
+             sidebarLayout(
+               sidebarPanel(
+                 sliderInput("se",
+                             "Standard error cutoff:",
+                             min = 0,
+                             max = ceiling(max(d$seLogRr, na.rm = TRUE)),
+                             value = 0,
+                             step = 0.01),
+                 selectInput("db", "Database:", dbs),
+                 selectInput("outcomeName", "Outcome:", outcomes),
+                 checkboxGroupInput("treatments", "Treatments:", treatments, selected = treatments)
+               ),
+               
+               mainPanel(
+                 plotOutput("forPlot", height = "625px", width = "100%"))
+             )
     )
   )
 ))
