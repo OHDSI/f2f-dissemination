@@ -37,7 +37,8 @@ shinyUI(fluidPage(
                ),
                
                mainPanel(
-                 plotOutput("forestPlot", height = "625px", width = "100%"))
+                 plotOutput("forestPlot", height = "625px", width = "100%", hover = hoverOpts("plotHover", delay = 100, delayType = "debounce")),
+                 uiOutput("hoverInfo"))
              )
     )
   )
