@@ -7,7 +7,13 @@
 library(shiny)
 library(ggplot2)
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
+  observe({
+    query <- parseQueryString(session$clientData$url_search)
+    if (!is.null(query[['outcome']])) {
+      updateTextInput(session, "outcomeName", value = query[['outcome']])
+    }
+  })  
   
   plot_data <- reactive({
     subset <- d[!is.na(d$seLogRr) & d$seLogRr <= input$se & d$db == input$db & d$outcomeName == input$outcomeName & d$targetName %in% input$treatments & d$comparatorName %in% input$treatments, ] 
@@ -19,7 +25,6 @@ shinyServer(function(input, output) {
     p <- ggplot(plot_data(), aes(x = targetName, y = comparatorName, fill = logRr))
     
     p <- p + geom_raster() +
-      theme_bw() +
       # Because we need the x and y axis to display every node,
       # not just the nodes that have connections to each other,
       # make sure that ggplot does not drop unused factor levels
