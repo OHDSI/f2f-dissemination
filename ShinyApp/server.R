@@ -25,6 +25,7 @@ shinyServer(function(input, output) {
       # make sure that ggplot does not drop unused factor levels
       scale_x_discrete(drop = TRUE) +
       scale_y_discrete(drop = TRUE) +
+      scale_fill_distiller(type = "div", palette = "RdBu") +
       theme(
         # Rotate the x-axis lables so they are legible
         axis.text.x = element_text(angle = 270, hjust = 0, size = 12),

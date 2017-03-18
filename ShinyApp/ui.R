@@ -8,8 +8,7 @@
 library(shiny)
 
 shinyUI(fluidPage(
-
-  titlePanel("OHDSI Evidence Pro"),
+  titlePanel(title=div(img(src = "ohdsi.png"), "Evidence Pro")),
   tabsetPanel(
     tabPanel("Matrix", 
              sidebarLayout(
