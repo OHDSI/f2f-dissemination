@@ -11,7 +11,7 @@ shinyServer(function(input, output) {
   
   # Sort the edge list based on the given arrangement variable
   plot_data <- reactive({
-    subset <- d[d$db == input$db & d$outcomeName == input$outcomeName & d$targetName %in% input$treatments & d$comparatorName %in% input$treatments, ] 
+    subset <- d[!is.na(d$seLogRr) & d$seLogRr >= input$se & d$db == input$db & d$outcomeName == input$outcomeName & d$targetName %in% input$treatments & d$comparatorName %in% input$treatments, ] 
     return(subset)
   })
   
