@@ -24,10 +24,12 @@
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "copy-webpack-plugin": "^4.0.1",
     "core-js": "^2.4.1",
-    "css-loader": "^0.26.2",
+    "css-loader": "^0.26.4",
+    "d3": "^4.7.3",
     "es6-promise": "^4.0.5",
     "feathers-client": "^1.9.0",
     "feathers-reduxify-services": "^0.3.0",
