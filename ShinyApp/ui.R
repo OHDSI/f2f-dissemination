@@ -25,7 +25,7 @@ shinyUI(fluidPage(
     ),
 
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput("distPlot", height = "625px", width = "100%")
     )
   )
 ))
