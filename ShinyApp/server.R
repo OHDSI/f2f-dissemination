@@ -71,7 +71,6 @@ shinyServer(function(input, output) {
     # Hover-over adapted from https://gitlab.com/snippets/16220
     hover <- input$plotHover
     point <- nearPoints(plot_data_forest(), hover, threshold = 50, maxpoints = 1, addDist = TRUE)
-    print(nrow(point))
     if (nrow(point) == 0) return(NULL)
     
     # calculate point position INSIDE the image as percent of total dimensions
@@ -105,5 +104,62 @@ shinyServer(function(input, output) {
                     "<b> hazard ratio: </b>", hr)))
     )
   })
+  
+  output$sliders <- renderUI({
+    lapply(outcomes, function(outcome) {
+      sliderInput(
+        inputId = gsub(" ", "_", outcome),
+        label = outcome,
+        min = 0,
+        max = 1,
+        value = 1,
+        step = 0.01)
+    })
+  })
+  
+  plot_data_util <- reactive({
+    # subset <- d[d$db == "CCAE", ]
+    # weights <- data.frame(outcomeName = outcomes, weight = runif(length(outcomes),0,1))
+    # 
+    subset <- d[!is.na(d$seLogRr) & d$db == input$utilDb , ] 
+    if (is.null(input[[gsub(" ", "_", outcomes[1])]] )) {
+      subset <- subset[subset$outcomeName == outcomes[1], ]
+      subset$util <- 0
+        return(subset)
+    }
+    weights <- data.frame(outcomeName = outcomes,
+                          weight = sapply(outcomes, function(x) {input[[gsub(" ", "_", x)]]}))
+    subset <- merge(subset, weights)
+    subset$product <- subset$logRr * subset$weight
+    util <- aggregate(product ~ targetName + comparatorName, data = subset, sum)
+    util$util <- util$product / sum(weights$weight)
+    return(util)
+  })
+  
+  output$utilityPlot <- renderPlot({
+    
+    p <- ggplot(plot_data_util(), aes(x = targetName, y = comparatorName, fill = util))
+    
+    p <- p + geom_raster() +
+      theme_bw() +
+      # Because we need the x and y axis to display every node,
+      # not just the nodes that have connections to each other,
+      # make sure that ggplot does not drop unused factor levels
+      scale_x_discrete(drop = TRUE) +
+      scale_y_discrete(drop = TRUE) +
+      scale_fill_distiller(type = "div", palette = "RdBu") +
+      theme(
+        # Rotate the x-axis lables so they are legible
+        axis.text.x = element_text(angle = 270, hjust = 0, size = 12),
+        axis.text.y = element_text(size = 12),
+        # Force the plot into a square aspect ratio
+        aspect.ratio = 1,
+        # Hide the legend (optional)
+        legend.position = "bottom")
+    
+    
+    return(p)
+  })
+  
   
 })
