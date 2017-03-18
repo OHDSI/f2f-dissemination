@@ -9,7 +9,6 @@ library(ggplot2)
 
 shinyServer(function(input, output) {
   
-  # Sort the edge list based on the given arrangement variable
   plot_data <- reactive({
     subset <- d[!is.na(d$seLogRr) & d$seLogRr >= input$se & d$db == input$db & d$outcomeName == input$outcomeName & d$targetName %in% input$treatments & d$comparatorName %in% input$treatments, ] 
     return(subset)
@@ -39,5 +38,32 @@ shinyServer(function(input, output) {
     return(p)
   })
   
+  plot_data_forest <- reactive({
+    subset <- d[d$db == input$forestDb & d$targetName == input$forestTreatment & !is.na(d$seLogRr), ] 
+    return(subset)
+  })
+  
+  output$forestPlot <- renderPlot({
+    breaks <- c(0.25, 0.5, 1, 2, 4, 6, 8, 10)
+    theme <- element_text(colour = "#000000", size = 6)
+    themeRA <- element_text(colour = "#000000", size = 5, hjust = 1)
+    col <- c(rgb(0, 0, 0.8, alpha = 1), rgb(0.8, 0.4, 0, alpha = 1))
+    colFill <- c(rgb(0, 0, 1, alpha = 0.5), rgb(1, 0.4, 0, alpha = 0.5))
+    subset <- plot_data_forest()
+    subset$significant <- subset$ci95lb > 1 | subset$ci95ub < 1
+    p <- ggplot(subset, aes(x = rr, y = outcomeName, xmin = ci95lb, xmax = ci95ub, color = significant, fill = significant)) +
+      geom_vline(xintercept = breaks, colour = "#AAAAAA",lty = 1, size = 0.2) + 
+      geom_vline(xintercept = 1, size = 0.5) +
+      geom_errorbarh() +
+      geom_point() +
+      scale_colour_manual(values = col) + 
+      scale_fill_manual(values = colFill) +
+      scale_x_continuous("Hazard ratio", trans = "log10", breaks = breaks, labels = breaks) +
+      coord_cartesian(xlim = c(0.25, 10)) +
+      facet_wrap(~comparatorName) +
+      theme(panel.grid.minor = element_blank(), panel.background = element_rect(fill = "#FAFAFA", colour = NA), panel.grid.major = element_line(colour = "#EEEEEE"), axis.ticks = element_blank(), axis.title.y = element_blank(), axis.title.x = element_blank(), axis.text.y = themeRA, axis.text.x = theme, legend.key = element_blank(), strip.text.x = theme, strip.background = element_blank(), legend.position = "none")
+    
+    return(p)
+  })
   
 })

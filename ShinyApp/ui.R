@@ -32,19 +32,12 @@ shinyUI(fluidPage(
     tabPanel("Forest", 
              sidebarLayout(
                sidebarPanel(
-                 sliderInput("se",
-                             "Standard error cutoff:",
-                             min = 0,
-                             max = ceiling(max(d$seLogRr, na.rm = TRUE)),
-                             value = 0,
-                             step = 0.01),
-                 selectInput("db", "Database:", dbs),
-                 selectInput("outcomeName", "Outcome:", outcomes),
-                 checkboxGroupInput("treatments", "Treatments:", treatments, selected = treatments)
+                 selectInput("forestDb", "Database:", dbs),
+                 selectInput("forestTreatment", "Target treatment:", treatments)
                ),
                
                mainPanel(
-                 plotOutput("forPlot", height = "625px", width = "100%"))
+                 plotOutput("forestPlot", height = "625px", width = "100%"))
              )
     )
   )
