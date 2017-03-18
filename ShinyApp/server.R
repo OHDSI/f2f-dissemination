@@ -10,7 +10,7 @@ library(ggplot2)
 shinyServer(function(input, output) {
   
   plot_data <- reactive({
-    subset <- d[!is.na(d$seLogRr) & d$seLogRr >= input$se & d$db == input$db & d$outcomeName == input$outcomeName & d$targetName %in% input$treatments & d$comparatorName %in% input$treatments, ] 
+    subset <- d[!is.na(d$seLogRr) & d$seLogRr <= input$se & d$db == input$db & d$outcomeName == input$outcomeName & d$targetName %in% input$treatments & d$comparatorName %in% input$treatments, ] 
     return(subset)
   })
   
