@@ -1,0 +1,6 @@
+.env.json
+*.iml
+node_modules
+public/app.js*
+.idea/
+node_modules/
