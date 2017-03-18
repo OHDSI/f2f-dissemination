@@ -9,20 +9,21 @@ library(shiny)
 
 shinyUI(fluidPage(
 
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("OHDSI Evidence Pro"),
 
-  # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      sliderInput("se",
+                  "Standard error cutoff:",
+                  min = 0,
+                  max = ceiling(max(d$seLogRr, na.rm = TRUE)),
+                  value = 0,
+                  step = 0.01),
+      selectInput("db", "Database:", dbs),
+      selectInput("outcomeName", "Outcome:", outcomes),
+      checkboxGroupInput("treatments", "Treatments:", treatments, selected = treatments)
     ),
 
-    # Show a plot of the generated distribution
     mainPanel(
       plotOutput("distPlot")
     )
